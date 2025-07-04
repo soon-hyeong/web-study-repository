@@ -181,6 +181,22 @@ Servlet : java web programming 을 위한 기술
 	구체적으로 어떤 곳에 사용되는가 ? 웹어플리케이션 전체 설정 관리
 							  각각의 서블릿(jsp포함)간  데이터 공유 지원 
 
+ServletConfig와 ServletContext
+구분				ServletConfig	ServletContext
+				개별 서블릿당 하나	웹 어플리케이션 당 하나
+				개별 서블릿 전용	웹 어플리케이션 내의 웹프로그램(Servlet or JSP)
+설정				@에너테이션 또는	web.xml
+				web.xml
+Spring과 연관성	개별 Bean 설정		ApplicationContext
+
+**ServletContextListener**
+:Application LifeCycle Listener
+웹 어플리케이션 시작 시점과 종료 시점의 이벤트를 감지하여
+시작 시점에 필요한 초기화작업(예 - 보안)과	contextInitialized()
+종료 시점에 필요한 작업(예 - 백업, 로깅) 을 정의해 실행시킬 수 있다	contextDestroyed()
+
+
+
 ****서블릿 공부시 재사용할 코드****
 
 // 응답시 컨텐트 타입을 설정, 브라우저에게 지금 응답은 HTML 문서야 라고 메세지를 보내기 위함
