@@ -23,7 +23,7 @@ public class NewsListServlet extends HttpServlet {
 		List<String> newsList = NewsService.getInstance().findNewsList();
 		request.setAttribute("newsList", newsList);
 		// 뉴스 리스트를 클라이언트에게 보여주면 되므로
-		// request에 공유하여 응답하는 것이 가장 적절request가 유지되면서 제어 이동하는 방식이 foward댜ㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑ
+		// request에 공유하여 응답하는 것이 가장 적절request가 유지되면서 제어 이동하는 방식이 foward댜
 		request.getRequestDispatcher("news-list.jsp").forward(request, response);
 	}
 
