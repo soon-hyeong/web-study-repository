@@ -26,9 +26,28 @@ public class FrontControllerServletVer4 extends HttpServlet {
 			Controller controller = null;
 			if(command.equals("findbyid")) {
 				controller = new FindCustomerByIdController();
+			} else if(command.equals("registerCustomer")) {
+				controller = new RegisterCustomerController();
 			}
+			// Command Pattern 적용 (캡슐화로 인해) 으로 표준화된 단일한 방식으로
+			// 다양한 컨트롤러들을 실행시켜 요청을 처리할 수 있다
 			String path = controller.handleRequest(request, response);
-			request.getRequestDispatcher(path).forward(request,response);
+			// Controller 영역에서 View로 제어를 이동하는 방식 : foward 와 redirect
+			// foward 이동 방식 : request와 response가 유지되면서 이동하는 방식
+			//					웹 컨테이너 상에서 디옹하여 응답되는 방식, 정보 조회용도 -> request에 공유해서 response 되면 request와 response는 소멸
+			//					웹어플리케이션 상에서 공유 객체 범위 : request < session < application
+			// 특징 : 기존 request가 유지되므로 새로고침시 재동작되는 특성 -> 등록 등 재동작되면 안되는 업무는 적합X
+			//
+			
+//			if(path.trim().split(":")[0].equals("redirect")) { //내가한거
+//				response.sendRedirect(path.trim().split(":")[1]);
+			if(path.trim().startsWith("redirect:")) {
+				response.sendRedirect(path.trim().substring(9));
+			}
+			else {
+				request.getRequestDispatcher(path).forward(request,response);
+
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("error.jsp"); //Front에서 예외 처리 공통 정책을 실행
